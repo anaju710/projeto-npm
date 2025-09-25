@@ -7,7 +7,17 @@ const connecion = mysql.createPool({
     password:''
 })
 
-function obterVeiculos()
+ async function obterVeiculos()
 {
-    connecion.execute('select * from veiculos')
+    const sql = 'select * from veiculos';
+    const [rows, fields] = await connecion.execute(sql);
+
+    return rows;
+}
+
+ async function incluirVeiculo(placa,modelo,cor,tipo)
+{
+    const sql = 'insert into veiculo (placa,modelo,cor,tipo) values (?,?,?,?)';
+   const [result] = await connecion.execute(sql[placa,modelo,cor,tipo])
+
 }
